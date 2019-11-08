@@ -21,11 +21,11 @@ const init = ((app, width, height, blur) => {
 	return container;
 })
 
-const createBlobs = ((count, radius, radiusCoef, positionCoef, size) => {
+const createBlobs = ((count, radius, radiusCoef, positionCoef, color, size) => {
 	
 	let objects = [];
 	
-	for(var i=0;i<6;i++) {
+	for(let i=0;i<6;i++) {
 		let obj = {
 			circle: new PIXI.Graphics(),
 			itemAngle: 0,
@@ -33,7 +33,7 @@ const createBlobs = ((count, radius, radiusCoef, positionCoef, size) => {
 			radiusY: radius+Math.random()*radiusCoef
 		}
 		obj.circle.lineStyle(0); 
-		obj.circle.beginFill(0xDE3249, 1);
+		obj.circle.beginFill(color, 1);
 		obj.circle.drawCircle(Math.random()*positionCoef, Math.random()*positionCoef, size);
 		obj.circle.endFill();
 
@@ -44,20 +44,19 @@ const createBlobs = ((count, radius, radiusCoef, positionCoef, size) => {
 	return objects;
 })
 
-const container = init(app, 100, 100, { size: 20, quality: 8});
-const objects = createBlobs(6, 10, 20, 40, 40);
+const container = init(app, 100, 100, { size: 20, quality: 8 });
+const objects = createBlobs(6, 10, 20, 40, 0xDE3249, 40);
 
 app.ticker.add(() => {
 	
 	const mouseposition = app.renderer.plugins.interaction.mouse.global;
 
-	speed = 5;
+	const = speed = 5;
 	
-	var difY = mouseposition.y - container.y;
-	var difX = mouseposition.x - container.x;
+	let difY = mouseposition.y - container.y;
+	let difX = mouseposition.x - container.x;
 
-		
-	for(var i=0;i<objects.length;i++) {
+	for(let i=0;i<objects.length;i++) {
 		objects[i].circle.x = Math.cos(objects[i].itemAngle) * objects[i].radiusX;
 		objects[i].circle.y = Math.sin(objects[i].itemAngle) * objects[i].radiusY;
 		
@@ -68,9 +67,9 @@ app.ticker.add(() => {
 		}
 	}
 	
-	var radians = Math.atan2(difY, difX);
-	var speedX = speed * Math.cos(radians);
-	var speedY = speed * Math.sin(radians);
+	let radians = Math.atan2(difY, difX);
+	let speedX = speed * Math.cos(radians);
+	let speedY = speed * Math.sin(radians);
 	container.x = (Math.abs(difX) < speedX) ? mouseposition.x : (container.x + speedX);
 	container.y = (Math.abs(difY) < speedY) ? mouseposition.y : (container.y + speedY);
 });

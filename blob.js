@@ -19,13 +19,13 @@ const init = ((app, width, height, blur) => {
 	container.filters = [blurFilter];
 	
 	return container;
-})
+});
 
 const createBlobs = ((count, radius, radiusCoef, positionCoef, color, size) => {
 	
 	let objects = [];
 	
-	for(let i=0;i<6;i++) {
+	for(let i=0;i<count;i++) {
 		let obj = {
 			circle: new PIXI.Graphics(),
 			itemAngle: 0,
@@ -42,7 +42,7 @@ const createBlobs = ((count, radius, radiusCoef, positionCoef, color, size) => {
 	}
 	
 	return objects;
-})
+});
 
 const container = init(app, 100, 100, { size: 20, quality: 8 });
 const objects = createBlobs(6, 10, 20, 40, 0xDE3249, 40);
@@ -51,7 +51,7 @@ app.ticker.add(() => {
 	
 	const mouseposition = app.renderer.plugins.interaction.mouse.global;
 
-	const = speed = 5;
+	const speed = 5;
 	
 	let difY = mouseposition.y - container.y;
 	let difX = mouseposition.x - container.x;

@@ -1,4 +1,4 @@
 Blob
 =============
 
-**Demo:** https://codepen.io/ivelebedev/pen/qBBKNRe
+**Demo:** https://codepen.io/ivelebedev/full/qBBKNRe
